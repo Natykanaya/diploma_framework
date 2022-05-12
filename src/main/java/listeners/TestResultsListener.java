@@ -5,12 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import sun.util.calendar.CalendarUtils;
+
+import java.time.*;
 
 
 public class TestResultsListener implements ITestListener {
     private static final Logger LOGGER = LogManager.getLogger("TestResultsListener:");
-    private CalendarUtils calendarUtils = new CalendarUtils();
     private String testExecutionTime;
 
     @Override
@@ -18,26 +18,26 @@ public class TestResultsListener implements ITestListener {
         LOGGER.info(getSimpleClassName(result.getTestClass().getName()) + " was started.");
     }
 
-   /* @Override
+    @Override
     public void onTestSuccess(ITestResult result) {
-        testExecutionTime = calendarUtils.convertMilliSecondsToFormattedDate(result.getEndMillis()
-                - result.getStartMillis());
+        testExecutionTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(result.getEndMillis() - result.getStartMillis()),
+                ZoneId.systemDefault()).toString();
 
         LOGGER.info(getSimpleClassName(result.getTestClass().getName()) + " was finished with success.");
         LOGGER.info("Test execution duration: " + testExecutionTime);
-    }*/
+    }
 
-    /*@Override
+    @Override
     public void onTestFailure(ITestResult result) {
-        testExecutionTime = calendarUtils.convertMilliSecondsToFormattedDate(result.getEndMillis()
-                - result.getStartMillis());
+        testExecutionTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(result.getEndMillis() - result.getStartMillis()),
+                ZoneId.systemDefault()).toString();
 
         LOGGER.error(getSimpleClassName(result.getTestClass().getName())
                 + " was failed on the "
                 + result.getMethod().getMethodName()
                 + " test method.");
         LOGGER.error("Test execution duration: " + testExecutionTime);
-    }*/
+    }
 
     @Override
     public void onTestSkipped(ITestResult result) {
