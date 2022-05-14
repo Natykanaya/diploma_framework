@@ -5,8 +5,8 @@ import org.testng.Assert;
 
 
 public class MethodsHelper {
-    public static void checkUrl(String expectedUrlPart) {
+    public static void checkUrlIsChange(String expectedUrlPart) {
         String currentUrl = WebDriverRunner.url();
-        Assert.assertFalse(currentUrl.contains(expectedUrlPart), "Urls are equal");
+        Assert.assertTrue(currentUrl.contains(expectedUrlPart), "Urls are equal!");
     }
 }
