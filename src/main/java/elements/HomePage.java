@@ -13,22 +13,25 @@ public class HomePage extends BasePage {
     private final SelenideElement gallery = $x("//a[@href=\"galerei\"]");
     private final SelenideElement videos = $x("//a[@href=\"video\"]");
     private final SelenideElement infographic = $x("//div[3]/a/img");
-    private SelenideElement oneOfTopNews = $x("//*[@id='bx-pager']/a[1]");
+    private final SelenideElement oneOfTopNews = $x("//*[@id='bx-pager']/a[1]");
     private final SelenideElement allTopNews = $x("//div[contains(@class,'block-slider')]");
-    //*[@id="bx-pager"]/a[1]/p
-    private SelenideElement allMenu = $x("//ul[contains(@class,'b-menu-nav')]");
+    private final SelenideElement allMenu = $x("//ul[contains(@class,'b-menu-nav')]");
     private final SelenideElement allNewsBtn = $x("//ul[contains(@class,'news-search')]/li/h3/a");
-    private final SelenideElement homeMenu = $x("//i[contains(@class,'icon-home-2')]");
-    private final SelenideElement administrMenu = $x("//li/a[text()='Адміністрація']");
-    private final SelenideElement docsMenu = $x("//li/a[text()='Документи']");
-    private final SelenideElement administratorsMenu = $x("//li/a[text()='Адмінпослуги']");
-    private final SelenideElement feedbackMenu = $x("//li/a[text()='Зворотній зв’язок']");
-    private final SelenideElement accessMenu = $x("//li/a[text()='Доступ до публічної інформації']");
-    private final SelenideElement newsMenu = $x("//li/a[text()='Новини']");
-    private final SelenideElement regionMenu = $x("//li/a[text()='Про область']");
+    private final SelenideElement homeMenuBtn = $x("//i[contains(@class,'icon-home-2')]");
+    private final SelenideElement administrMenuBtn = $x("//li/a[text()='Адміністрація']");
+    private final SelenideElement docsMenuBtn = $x("//li/a[text()='Документи']");
+    private final SelenideElement administratorsMenuBtn = $x("//li/a[text()='Адмінпослуги']");
+    private final SelenideElement feedbackMenuBtn = $x("//li/a[text()='Зворотній зв’язок']");
+    private final SelenideElement accessMenuBtn = $x("//li/a[text()='Доступ до публічної інформації']");
+    private final SelenideElement newsMenuBtn = $x("//li/a[text()='Новини']");
+    private final SelenideElement regionMenuBtn = $x("//li/a[text()='Про область']");
     private final SelenideElement linerHeadOfNews = $x("//div[contains(@class,'liner-head')]");
     private final SelenideElement oneOfNewsUnderHeader = $x("//ul[contains(@class,'main-news')]/li[1]");
     private final SelenideElement footMenu = $x("//div[contains(@class,'foot-main')]");
+    private final SelenideElement footerPage = $x("//div[contains(@class,'foot-contacts')]");
+    private final SelenideElement footerEmblemOfKh = $x("//div[contains(@class,'g-tacenter')]");
+    private final SelenideElement footerBtnUp = $x("//i[contains(@class,'icon-thin-pointer-up')]");
+    private final SelenideElement footerContacts = $x("//p[contains(@class,'contancts-head')]");
 
     @Step("Verify that emblemKh is displayed")
     public HomePage verifyEmblemKhIsPresent() {
@@ -149,44 +152,122 @@ public class HomePage extends BasePage {
 
     @Step("Verify Header Of News is present")
     public HomePage verifyHeaderOfNewsIsPresent() {
-        actions().moveToElement(linerHeadOfNews);
+        linerHeadOfNews.scrollTo();
         assertTrue(linerHeadOfNews.isDisplayed(), "Header of news is not present");
         return page(HomePage.class);
     }
 
     @Step("Verify One Of the News is present")
     public HomePage verifyOneOfNewsIsPresent() {
-        actions().moveToElement(oneOfNewsUnderHeader);
+        oneOfNewsUnderHeader.scrollTo();
         assertTrue(oneOfNewsUnderHeader.isDisplayed(), "One of the news is not present");
         return page(HomePage.class);
     }
 
     @Step("Click on One Of the News")
     public HomePage clickOneOfNews() {
-        actions().moveToElement(oneOfNewsUnderHeader);
+        oneOfNewsUnderHeader.scrollTo();
         oneOfNewsUnderHeader.click();
         return page(HomePage.class);
     }
 
     @Step("Verify all news btn is present")
     public HomePage verifyAllNewsBtnIsPresent() {
-        actions().moveToElement(allNewsBtn);
+        allNewsBtn.scrollTo();
         assertTrue(allNewsBtn.isDisplayed(), "All news btn is not present");
         return page(HomePage.class);
     }
 
     @Step("Click on all news btn")
     public HomePage clickOnAllNewsBtn() {
-        actions().moveToElement(allNewsBtn);
+        allNewsBtn.scrollTo();
         allNewsBtn.click();
         return page(HomePage.class);
     }
 
     @Step("Verify foot menu is present")
     public HomePage verifyFootMenuIsPresent() {
-        actions().moveToElement(footMenu);
+        footMenu.scrollTo();
         assertTrue(footMenu.isDisplayed(), "All news btn is not present");
         return page(HomePage.class);
     }
 
+    @Step("Verify Footer page is present")
+    public HomePage verifyFooterPageIsPresent() {
+        footerPage.scrollTo();
+        assertTrue(footerPage.isDisplayed(), "Footer page is not present");
+        return page(HomePage.class);
+    }
+
+
+    @Step("Verify Footer EmblemOfKh is present")
+    public HomePage verifyFooterEmblemOfKhIsPresent() {
+        footerEmblemOfKh.scrollTo();
+        assertTrue(footerEmblemOfKh.isDisplayed(), "Footer EmblemOfKh is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Footer Contacts is present")
+    public HomePage verifyFooterContactsIsPresent() {
+        footerContacts.scrollTo();
+        assertTrue(footerContacts.isDisplayed(), "Footer Contacts is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Footer BtnUp is present")
+    public HomePage verifyFooterBtnUpIsPresent() {
+        footerBtnUp.scrollTo();
+        assertTrue(footerBtnUp.isDisplayed(), "Footer BtnUp is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on Footer BtnUp")
+    public HomePage clickFooterBtnUp() {
+        footerBtnUp.scrollTo();
+        footerBtnUp.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Menu is present")
+    public HomePage verifyAllMenuIsPresent() {
+        allMenu.click();
+        assertTrue(allMenu.isDisplayed(), "Menu is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Home Menu Btn is present")
+    public HomePage verifyHomeMenuBtnIsPresent() {
+        assertTrue(allNewsBtn.isDisplayed(), "Home menu btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on home menu btn")
+    public HomePage clickOnHomeMenuBtn() {
+        homeMenuBtn.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify administr Menu Btn is present")
+    public HomePage verifyAdministrMenuBtnIsPresent() {
+        assertTrue(administrMenuBtn.isDisplayed(), "Administr Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on home menu btn")
+    public HomePage clickOnAdministrMenuBtn() {
+        administrMenuBtn.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Docs Menu Btn is present")
+    public HomePage verifyDocsMenuBtnIsPresent() {
+        assertTrue(docsMenuBtn.isDisplayed(), "Docs Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on Docs Menu Btn")
+    public HomePage clickOnDocsMenuBtn() {
+        docsMenuBtn.click();
+        return page(HomePage.class);
+    }
 }

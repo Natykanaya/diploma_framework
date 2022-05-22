@@ -14,7 +14,6 @@ public class HomePageTest extends BaseTest {
     private static final String EXPECTED_VIDEO_URL = VIDEO_URL.getValue();
     private static final String EXPECTED_NEWS_URL = NEWS_URL.getValue();
 
-
     @Test(description = "Verify header of home page")
     public void verifyHeaderOfHomePage() {
         page(HomePage.class)
@@ -82,6 +81,19 @@ public class HomePageTest extends BaseTest {
                 .verifyAllNewsBtnIsPresent()
                 .clickOnAllNewsBtn();
         checkUrlIsChange(EXPECTED_NEWS_URL);
+    }
+
+    @Test(description = "Verify footer of page and click on Up button")
+    public void verifyFooterOfMainPage() {
+        page(HomePage.class)
+                .openPage()
+                .verifyFootMenuIsPresent()
+                .verifyFooterPageIsPresent()
+                .verifyFooterEmblemOfKhIsPresent()
+                .verifyFooterContactsIsPresent()
+                .verifyFooterBtnUpIsPresent()
+                .clickFooterBtnUp()
+                .verifyTitleIsPresent();
     }
 
 }
