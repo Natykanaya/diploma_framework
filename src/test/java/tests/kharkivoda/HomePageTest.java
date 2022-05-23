@@ -1,6 +1,5 @@
 package tests.kharkivoda;
 
-import com.google.inject.Inject;
 import elements.HomePage;
 import org.testng.annotations.Test;
 import tests.BaseTest;

@@ -17,4 +17,5 @@ public class HeaderFragment {
     private final SelenideElement facebookBtn = $x("//a[@title='Facebook']");
     private final SelenideElement rssBtn = $x("//a[@title='RSS']");
     private final SelenideElement searchBtn = $x("//input[@type='text']");
+    private final SelenideElement footerBtnUp = $x("//i[contains(@class,'icon-thin-pointer-up')]");
 }

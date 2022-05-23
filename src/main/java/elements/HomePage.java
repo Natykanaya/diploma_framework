@@ -30,7 +30,6 @@ public class HomePage extends BasePage {
     private final SelenideElement footMenu = $x("//div[contains(@class,'foot-main')]");
     private final SelenideElement footerPage = $x("//div[contains(@class,'foot-contacts')]");
     private final SelenideElement footerEmblemOfKh = $x("//div[contains(@class,'g-tacenter')]");
-    private final SelenideElement footerBtnUp = $x("//i[contains(@class,'icon-thin-pointer-up')]");
     private final SelenideElement footerContacts = $x("//p[contains(@class,'contancts-head')]");
 
     @Step("Verify that emblemKh is displayed")
@@ -216,15 +215,15 @@ public class HomePage extends BasePage {
 
     @Step("Verify Footer BtnUp is present")
     public HomePage verifyFooterBtnUpIsPresent() {
-        footerBtnUp.scrollTo();
-        assertTrue(footerBtnUp.isDisplayed(), "Footer BtnUp is not present");
+        headerFragment.getFooterBtnUp().scrollTo();
+        assertTrue(headerFragment.getFooterBtnUp().isDisplayed(), "Footer BtnUp is not present");
         return page(HomePage.class);
     }
 
     @Step("Click on Footer BtnUp")
     public HomePage clickFooterBtnUp() {
-        footerBtnUp.scrollTo();
-        footerBtnUp.click();
+        headerFragment.getFooterBtnUp().scrollTo();
+        headerFragment.getFooterBtnUp().click();
         return page(HomePage.class);
     }
 
@@ -253,7 +252,7 @@ public class HomePage extends BasePage {
         return page(HomePage.class);
     }
 
-    @Step("Click on home menu btn")
+    @Step("Click on administr menu btn")
     public HomePage clickOnAdministrMenuBtn() {
         administrMenuBtn.click();
         return page(HomePage.class);
@@ -268,6 +267,66 @@ public class HomePage extends BasePage {
     @Step("Click on Docs Menu Btn")
     public HomePage clickOnDocsMenuBtn() {
         docsMenuBtn.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Administrators Menu Btn is present")
+    public HomePage verifyAdministratorsMenuBtnIsPresent() {
+        assertTrue(administratorsMenuBtn.isDisplayed(), "Docs Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on Administrators Menu Btn")
+    public HomePage clickOnAdministratorsMenuBtn() {
+        administratorsMenuBtn.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Feedback Menu Btn is present")
+    public HomePage verifyFeedbackMenuBtnIsPresent() {
+        assertTrue(feedbackMenuBtn.isDisplayed(), "Docs Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on Feedback Menu Btn")
+    public HomePage clickOnFeedbackMenuBtn() {
+        feedbackMenuBtn.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify Access Menu Btn is present")
+    public HomePage verifyAccessMenuBtnIsPresent() {
+        assertTrue(accessMenuBtn.isDisplayed(), "Docs Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on Access Menu Btn")
+    public HomePage clickOnAccessMenuBtn() {
+        accessMenuBtn.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify News Menu Btn is present")
+    public HomePage verifyNewsMenuBtnIsPresent() {
+        assertTrue(newsMenuBtn.isDisplayed(), "Docs Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on News Menu Btn")
+    public NewsPage clickOnNewsMenuBtn() {
+        newsMenuBtn.click();
+        return page(NewsPage.class);
+    }
+
+    @Step("Verify Region Menu Btn is present")
+    public HomePage verifyRegionMenuBtnIsPresent() {
+        assertTrue(regionMenuBtn.isDisplayed(), "Docs Menu Btn is not present");
+        return page(HomePage.class);
+    }
+
+    @Step("Click on Region Menu Btn")
+    public HomePage clickOnRegionMenuBtn() {
+        regionMenuBtn.click();
         return page(HomePage.class);
     }
 }
