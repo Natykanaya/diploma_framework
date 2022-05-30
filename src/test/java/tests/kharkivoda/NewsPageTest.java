@@ -25,4 +25,17 @@ public class NewsPageTest extends BaseTest {
                 .verifyPreviousPageBtnIsPresent()
                 .verifyNextPageBtnIsPresent();
     }
+
+    @Test(description = "Search news by date")
+    public void newsSearchByDate() {
+        page(HomePage.class)
+                .openPage()
+                .verifyNewsMenuBtnIsPresent()
+                .clickOnNewsMenuBtn()
+                .verifyArchiveOfDocsIsPresent()
+                .verifyArchiveOfDocsText()
+                .verifySelectYearDropdownIsPresent()
+                .clickOnSelectYearDropdown()
+                .chooseYear();
+    }
 }

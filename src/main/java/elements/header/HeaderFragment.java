@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class HeaderFragment {
     private final SelenideElement title = $x("//p[contains(@class,'logo-text')]");
     private final SelenideElement emblemUkr = $x("//p[contains(@class,'logo-trident')]");
-    private final SelenideElement emblemKh = $x("//p[contains(@class,'logo') and text()='Харківська обласна державна адміністрація']");
+    private final SelenideElement emblemKh = $x("//p[contains(@class,'logo') and text()='Харківська обласна військова адміністрація']");
     private final SelenideElement iconGlasses = $x("//a[contains(@class,'sv')]");
     private final SelenideElement ukrainianLanguage = $x("//span[text()='УКР']");
     private final SelenideElement russianLanguage = $x("//a[text()='РУС']");

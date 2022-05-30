@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 
 public class BasePage {
-    private static final String HOME_PAGE = "https://kharkivoda.gov.ua/";
+    public static final String HOME_PAGE = "https://kharkivoda.gov.ua/";
 
     public HomePage openPage() {
         open(HOME_PAGE);

@@ -1,5 +1,6 @@
 package elements;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import elements.header.HeaderFragment;
 import io.qameta.allure.Step;
@@ -12,8 +13,8 @@ public class NewsPage extends BasePage {
     protected HeaderFragment headerFragment = page(HeaderFragment.class);
     private final SelenideElement linerHeadOfNews = $x("//div[contains(@class,'liner-head')]");
     private final SelenideElement archiveOfDocs = $x("//div[contains(@class,'menu-aside')]");
-    private final SelenideElement selectYearDropdown = $x("//select[contains(@name,'year')]");
-    private final SelenideElement selectMonthDropdown = $x("//select[contains(@name,'month')]");
+    private final SelenideElement selectYearDropdown = $x("//div[contains(@data-placeholder,'оберіть рік')]");
+    private final SelenideElement selectMonthDropdown = $x("//div[contains(@data-placeholder,'оберіть місяць')]");
     private final SelenideElement tableOfYear = $x("//table[contains(@class,'calendar')]");
     private final SelenideElement submitBtn = $x("//input[contains(@type,'submit')]");
     private final SelenideElement previousPageBtn = $x("//span[contains(@class,'b-pag__prev')]");
@@ -24,6 +25,8 @@ public class NewsPage extends BasePage {
     private final SelenideElement listOfNews = $x("//ul[contains(@class,'news-list')]");
     private final SelenideElement titleOfArchive = $x("//h4[contains(@class,'b-aside__header')]");
     private final SelenideElement pagination = $x("//ul[contains(@class,'g-tacenter')]");
+    private final SelenideElement selectedYear = $x("//div[contains(@class,'jq-selectbox__dropdown')]/ul/li[text()='2021']");
+    private final SelenideElement selectedMonth = $x("//li[contains(@data-year,'2021') and text()='Березень']");
 
     @Step("Verify liner Head Of News is present")
     public NewsPage verifyLinerHeadOfNewsIsPresent() {
@@ -165,6 +168,25 @@ public class NewsPage extends BasePage {
     public NewsPage verifyPaginationIsPresent() {
         pagination.scrollTo();
         assertTrue(pagination.isDisplayed(), "Pagination is not present");
+        return page(NewsPage.class);
+    }
+
+    @Step("Choose year in archive")
+    public NewsPage chooseYear() {
+       selectedYear.shouldBe(Condition.exist).click();
+        return page(NewsPage.class);
+    }
+
+    @Step("Choose month in archive")
+    public NewsPage chooseMonth() {
+        selectedMonth.shouldBe(Condition.exist).click();
+        return page(NewsPage.class);
+    }
+
+    @Step("Choose month and year in archive")
+    public NewsPage chooseMonthAndYear() {
+        System.out.println(selectedMonth.getText());
+        System.out.println(selectedYear.getText());
         return page(NewsPage.class);
     }
 }

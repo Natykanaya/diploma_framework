@@ -54,7 +54,7 @@ public class HomePage extends BasePage {
     public HomePage verifyTitleIsPresent() {
         String expectedTitle = "ОФІЦІЙНИЙ ВЕБ-САЙТ\n" +
                 "ХАРКІВСЬКА ОБЛАСНА\n" +
-                "ДЕРЖАВНА АДМІНІСТРАЦІЯ";
+                "ВІЙСЬКОВА АДМІНІСТРАЦІЯ";
         assertEquals(headerFragment.getTitle().getText(), expectedTitle, "act and exp is different");
         return page(HomePage.class);
     }
@@ -289,9 +289,9 @@ public class HomePage extends BasePage {
     }
 
     @Step("Click on Feedback Menu Btn")
-    public HomePage clickOnFeedbackMenuBtn() {
+    public FeedbackPage clickOnFeedbackMenuBtn() {
         feedbackMenuBtn.click();
-        return page(HomePage.class);
+        return page(FeedbackPage.class);
     }
 
     @Step("Verify Access Menu Btn is present")
