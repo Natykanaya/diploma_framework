@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import elements.header.HeaderFragment;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
@@ -26,7 +27,10 @@ public class NewsPage extends BasePage {
     private final SelenideElement titleOfArchive = $x("//h4[contains(@class,'b-aside__header')]");
     private final SelenideElement pagination = $x("//ul[contains(@class,'g-tacenter')]");
     private final SelenideElement selectedYear = $x("//div[contains(@class,'jq-selectbox__dropdown')]/ul/li[text()='2021']");
-    private final SelenideElement selectedMonth = $x("//li[contains(@data-year,'2021') and text()='Березень']");
+    private final SelenideElement selectedMonth = $x("//li[text()='Березень'][2]");
+    private final SelenideElement textOfSelectedMonth = $x("//div[contains(@data-placeholder,'оберіть місяць')]/div/div[contains(@class,'jq-selectbox__select-text')]");
+    private final SelenideElement textOfSelectedYear = $x("//div[contains(@data-placeholder,'оберіть рік')]/div/div[contains(@class,'jq-selectbox__select-text')]");
+    private final SelenideElement dateInNews = $x("//p[contains(@class,'date')]");
 
     @Step("Verify liner Head Of News is present")
     public NewsPage verifyLinerHeadOfNewsIsPresent() {
@@ -160,6 +164,7 @@ public class NewsPage extends BasePage {
 
     @Step("Verify selected Date is present")
     public NewsPage verifySelectedDateIsPresent() {
+        selectedDate.scrollTo();
         assertTrue(selectedDate.isDisplayed(), "Selected Date is not present");
         return page(NewsPage.class);
     }
@@ -173,7 +178,7 @@ public class NewsPage extends BasePage {
 
     @Step("Choose year in archive")
     public NewsPage chooseYear() {
-       selectedYear.shouldBe(Condition.exist).click();
+        selectedYear.shouldBe(Condition.exist).click();
         return page(NewsPage.class);
     }
 
@@ -183,10 +188,17 @@ public class NewsPage extends BasePage {
         return page(NewsPage.class);
     }
 
-    @Step("Choose month and year in archive")
-    public NewsPage chooseMonthAndYear() {
-        System.out.println(selectedMonth.getText());
-        System.out.println(selectedYear.getText());
+    @Step("Get text of selected date")
+    public NewsPage verifyTextOfSelectedDate() {
+        String selectedDateText = textOfSelectedMonth.getText() + " " + textOfSelectedYear.getText();
+        selectedDate.scrollTo();
+        assertEquals(selectedDateText, selectedDate.getText(), "Selected date are not equal!");
+        return page(NewsPage.class);
+    }
+
+    @Step("Verify that news are contains selected year")
+    public NewsPage verifyYearInNewsDate() {
+        assertTrue(dateInNews.getText().contains(textOfSelectedYear.getText()));
         return page(NewsPage.class);
     }
 }

@@ -31,6 +31,8 @@ public class HomePage extends BasePage {
     private final SelenideElement footerPage = $x("//div[contains(@class,'foot-contacts')]");
     private final SelenideElement footerEmblemOfKh = $x("//div[contains(@class,'g-tacenter')]");
     private final SelenideElement footerContacts = $x("//p[contains(@class,'contancts-head')]");
+    private final SelenideElement ukrLanguage = $x("//a[text()='УКР']");
+
 
     @Step("Verify that emblemKh is displayed")
     public HomePage verifyEmblemKhIsPresent() {
@@ -55,7 +57,7 @@ public class HomePage extends BasePage {
         String expectedTitle = "ОФІЦІЙНИЙ ВЕБ-САЙТ\n" +
                 "ХАРКІВСЬКА ОБЛАСНА\n" +
                 "ВІЙСЬКОВА АДМІНІСТРАЦІЯ";
-        assertEquals(headerFragment.getTitle().getText(), expectedTitle, "act and exp is different");
+        assertEquals(headerFragment.getLogoText().getText(), expectedTitle, "act and exp is different");
         return page(HomePage.class);
     }
 
@@ -328,5 +330,36 @@ public class HomePage extends BasePage {
     public HomePage clickOnRegionMenuBtn() {
         regionMenuBtn.click();
         return page(HomePage.class);
+    }
+
+    @Step("Click on change to RUS language")
+    public HomePage clickOnChangeToRusLanguage() {
+        headerFragment.getRussianLanguage().click();
+        return page(HomePage.class);
+    }
+
+    @Step("Click on change to UKR language")
+    public HomePage clickOnChangeToUkrLanguage() {
+        ukrLanguage.click();
+        return page(HomePage.class);
+    }
+
+    @Step("Click on change to ENG language")
+    public HomePage clickOnChangeToEngLanguage() {
+        headerFragment.getEnglishLanguage().click();
+        return page(HomePage.class);
+    }
+
+    @Step("Verify localization")
+    public HomePage verifyLocalization(String expectedLocalizationMessage) {
+        assertTrue(headerFragment.getLogoText().getText().contains(expectedLocalizationMessage));
+        return page(HomePage.class);
+    }
+
+    public SearchPage searchArticle(String searchString) {
+        headerFragment.getSearchBtn().shouldBe(Condition.visible).click();
+        headerFragment.getSearchBtn().sendKeys(searchString);
+        headerFragment.getSearchBtn().submit();
+        return page(SearchPage.class);
     }
 }

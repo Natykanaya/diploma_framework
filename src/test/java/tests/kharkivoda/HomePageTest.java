@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 
 import static com.codeborne.selenide.Selenide.page;
+import static helpers.ExpectedResults.*;
 import static helpers.MethodsHelper.checkUrlIsChange;
 import static enums.MAIN_URL.*;
 
@@ -73,7 +74,7 @@ public class HomePageTest extends BaseTest {
         checkUrlIsChange(EXPECTED_NEWS_URL);
     }
 
-    @Test(description = "Click on all news")
+    @Test(description = "Click on all news btn")
     public void clickOnAllNews() {
         page(HomePage.class)
                 .openPage()
@@ -93,6 +94,18 @@ public class HomePageTest extends BaseTest {
                 .verifyFooterBtnUpIsPresent()
                 .clickFooterBtnUp()
                 .verifyTitleIsPresent();
+    }
+
+    @Test(description = "Verify localization")
+    public void verifyLocalization() {
+        page(HomePage.class)
+                .openPage()
+                .clickOnChangeToRusLanguage()
+                .verifyLocalization(RUS_TEXT)
+                .clickOnChangeToEngLanguage()
+                .verifyLocalization(ENG_TEXT)
+                .clickOnChangeToUkrLanguage()
+                .verifyLocalization(UKR_TEXT);
     }
 
 }

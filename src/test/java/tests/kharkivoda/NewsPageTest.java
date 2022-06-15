@@ -10,7 +10,7 @@ import static helpers.MethodsHelper.checkUrlIsChange;
 
 public class NewsPageTest extends BaseTest {
 
-    @Test(description = "Verify Basic Of News Page")
+    @Test(description = "Verify Basic Of News Page",priority = 1)
     public void verifyBasicOfNewsMenu() {
         page(HomePage.class)
                 .openPage()
@@ -26,7 +26,7 @@ public class NewsPageTest extends BaseTest {
                 .verifyNextPageBtnIsPresent();
     }
 
-    @Test(description = "Search news by date")
+    @Test(description = "Search news by date",priority = 2)
     public void newsSearchByDate() {
         page(HomePage.class)
                 .openPage()
@@ -36,6 +36,14 @@ public class NewsPageTest extends BaseTest {
                 .verifyArchiveOfDocsText()
                 .verifySelectYearDropdownIsPresent()
                 .clickOnSelectYearDropdown()
-                .chooseYear();
+                .chooseYear()
+                .verifySelectMonthDropdownIsPresent()
+                .clickOnSelectMonthDropdown()
+                .chooseMonth()
+                .verifyShowBtnIsPresent()
+                .clickOnShowBtn()
+                .verifySelectedDateIsPresent()
+                .verifyTextOfSelectedDate()
+                .verifyYearInNewsDate();
     }
 }
