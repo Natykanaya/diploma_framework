@@ -24,8 +24,8 @@ public class WebDriverProvider {
     public synchronized void initDriver() {
         driver = webDriverFactory.newWebDriver();
         driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
         Configuration.headless = true;
+        //driver.manage().window().maximize();
     }
 
     public static WebDriverProvider getWebDriverProviderInstance() {
