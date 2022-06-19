@@ -1,5 +1,6 @@
 package driver;
 
+import com.codeborne.selenide.Configuration;
 import driver.driverfactory.WebDriverFactory;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +25,7 @@ public class WebDriverProvider {
         driver = webDriverFactory.newWebDriver();
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
+        Configuration.headless = true;
     }
 
     public static WebDriverProvider getWebDriverProviderInstance() {
